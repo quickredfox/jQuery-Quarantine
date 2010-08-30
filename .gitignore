@@ -1,0 +1,16 @@
+# Xcode
+build/*
+*.pbxuser
+*.mode1v3
+
+# Subversion
+.svn
+
+# OS X
+.DS_Store
+
+# Textmate
+*.tmproj
+
+# project
+example

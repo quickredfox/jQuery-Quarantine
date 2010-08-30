@@ -1,12 +1,11 @@
 var loadVersion,testFn;
-
-loadVersion = '1.4.2'
+loadVersion = '1.4.2';
 testFn = function() { return true };
-jQuerySandbox.setup(loadVersion);
 stop();
+jQQ.setup(loadVersion);
 $.fn.testFn = testFn;
-jQuerySandbox.execute(function(jQuery,$) {
-    test('window.jQuery and sandboxed jQuery are not the same',function() {
+jQQ.isolate(function(jQuery,$) {
+    asyncTest('window.jQuery and sandboxed jQuery are not the same',function() {
         expect(4)        
         equals(window.jQuery.fn.jquery,'1.3.2', 'global jQuery should be old jQuery');
         equals(window.$.fn.jquery,'1.3.2', 'global jQuery  should be old jQuery');    
@@ -15,16 +14,16 @@ jQuerySandbox.execute(function(jQuery,$) {
         start()
     });
 });
-jQuerySandbox.execute(function(jQuery,$) {
-    test('Binding callbacks',function() {
+jQQ.isolate(function(jQuery,$) {
+    asyncTest('Binding callbacks',function() {
         expect(1)
-        ok(true,'Should be able to bind multiple execute callbacks');
+        ok(true,'Should be able to bind multiple isolate callbacks');
         start();
     })
 
 })
-jQuerySandbox.execute(function(jQuery,$) {
-    test('Plugin Integrity',function() {
+jQQ.isolate(function(jQuery,$) {
+    asyncTest('Plugin Integrity',function() {
         expect(2)
         same(window.jQuery.fn.testFn,testFn,'global jQuery should contain original plugin');
         ok((typeof $.fn.testFn === 'undefined'),'local jQuery should not contain original plugin');
@@ -32,9 +31,9 @@ jQuerySandbox.execute(function(jQuery,$) {
     });
 })
 
-jQuerySandbox.execute(function(jQuery,$) {
-    test('window.destroyjQuerySandbox',function() {
-        jQuerySandbox.teardown();
+jQQ.isolate(function(jQuery,$) {
+    asyncTest('window.destroyjQQ',function() {
+        jQQ.teardown();
         expect(4)        
         equals(window.jQuery.fn.jquery,'1.3.2', 'should be old jQuery');
         equals(window.$.fn.jquery,'1.3.2', 'should be old jQuery');    
@@ -44,10 +43,10 @@ jQuerySandbox.execute(function(jQuery,$) {
     })
 })
 
-jQuerySandbox.execute(function(jQuery,$) {
-    test('after a destroy, the new jQuery is still accessible, why the hell not?',function() {
+jQQ.isolate(function(jQuery,$) {
+    asyncTest('after a destroy, the new jQuery is still accessible, why the hell not?',function() {
         expect(1)        
-        equals(window.jQuerySandbox.fn.jquery,'1.4.2', 'should be the previously sandboxed jQuery');
+        equals(window.jQQ.fn.jquery,'1.4.2', 'should be the previously sandboxed jQuery');
         start()
     })
 })

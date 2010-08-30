@@ -1,12 +1,57 @@
-# jquery-conflict-sandbox
+# jQuery Quarantine
 
-Description
+Inject and Isolate a specific version of jQuery into the page and use it on a non-conflicting way.
+
+## Example Usage
+
+Let's say you're building a widget intended to be embedded within some arbitrary html which you have no control over. 
+Furthermore, let's assume the page which our widget will be installed in either has an older jQuery version than the one 
+you want or it has no jQuery at all. On top of that, you want to use some plugins you made/downloaded that all hook onto
+the jQuery and $ namespaces without having to rewrite them entirely.... This haphazard of a hack flavoured javascript 
+Helps you do that.
+
+Of course, you cant use this right out of the box depending on the size and distribution of your project but I will try to document 
+the 3 public methods and give a tiny theoretical application of this approach.
+
+    /*
+       jQQ.setup([aVersionString]); 
+
+       Loads a copy of jquery from google CDN (you can pass in a version string see: http://code.google.com/apis/libraries/devguide.html#jquery)
+
+    */
+       jQQ.setup('1.4.2');
+
+    /*
+       jQQ.isolate([aFunction]); 
+	   
+	   Runs your function whenever the quarantine is ready. The function signature MUST have at least one argument, a jQuery placeholder.  
+	   	
+    */
+       jQQ.isolate(function($){
+			// $ here is our injected version.
+			$.fn.myplugin = {
+				desc: "A magic little plugin that exists only within the confines of quarantine"
+			};
+       });
+       jQQ.isolate(function($){
+			// Isolate callbacks are executed in order of addition
+			$(document.body).myplugin();
+       });
+       jQQ.isolate(function(jQuery,$){
+			console.debug(jQuery===$) // true, isolate gets jQuery passed in twice to save you 1 "var =" assignment;
+       });
+
+     /*
+        jQQ.teardown(); Not really useful, dont rely on it, might remove it.
+     */
+
+So basically, figure it out :P
 
 ## License 
 
 (The MIT License)
 
-Copyright (c) 2010 Your Name, your.email@jquery-conflict-sandbox.com
+Copyright (c) 2010 Your Name, your.email@jquery-conflictsandbox.com
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
