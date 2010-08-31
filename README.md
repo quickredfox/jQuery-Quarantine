@@ -56,7 +56,7 @@ So basically, figure it out :P
 
 (The MIT License)
 
-Copyright (c) 2010 Your Name, your.email@jquery-conflictsandbox.com
+Copyright (c) 2010 Francois Lafortune, code@quickredfox.at
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
