@@ -1,6 +1,6 @@
 # jQuery Quarantine
 
-Inject and Isolate a specific version of jQuery into the page and use it on a non-conflicting way.
+Inject and Isolate a specific version of jQuery into the page and use it in a non-conflicting way.
 
 ## Example Usage
 
