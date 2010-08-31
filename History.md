@@ -9,7 +9,11 @@
 ------------------
 
 * jquerysandbox API change
-* API/project re-christening 
+* API/project re-christening jquerysandbox -> jQuery Quarantine (jQQ)
 * up'ed on github
+
+0.0.3 / 2010-08-30
+
+* re-designed API,removed teardown(), reflected in necessary documentation.
 
 

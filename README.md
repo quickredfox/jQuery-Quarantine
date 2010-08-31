@@ -16,7 +16,8 @@ the 3 public methods and give a tiny theoretical application of this approach.
     /*
        jQQ.setup([aVersionString]); 
 
-       Loads a copy of jquery from google CDN (you can pass in a version string see: http://code.google.com/apis/libraries/devguide.html#jquery)
+       Loads a copy of jquery from google CDN (you can pass in a version string 
+	   see: http://code.google.com/apis/libraries/devguide.html#jquery for supported version strings.
 
     */
        jQQ.setup('1.4.2');
@@ -37,13 +38,17 @@ the 3 public methods and give a tiny theoretical application of this approach.
 			// Isolate callbacks are executed in order of addition
 			$(document.body).myplugin();
        });
+		// note: current design makes it that if your callback signature has n arguments it will be passed n times the newly loaded jQuery 
+		// (each argument == jquery)
        jQQ.isolate(function(jQuery,$){
-			console.debug(jQuery===$) // true, isolate gets jQuery passed in twice to save you 1 "var =" assignment;
+			// true	
+			return (jQuery === $ && !arguments[2]); 
+       });
+       jQQ.isolate(function(jQuery,$,another){
+            // false, because function signature has 3 arguments, the last one is the same as the others.	
+			return (jQuery === $ && !arguments[2]);
        });
 
-     /*
-        jQQ.teardown(); Not really useful, dont rely on it, might remove it.
-     */
 
 So basically, figure it out :P
 
