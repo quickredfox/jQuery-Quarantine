@@ -1,3 +1,8 @@
+# UPDATE
+
+I opened up the issues section seeing as some people seem to use this. I'd advise against using this now. This solution was written for a specific time 
+in DHTML land and browsers/CSS/HTML have evolved past this. The future (I think) - for this kind of situation - is using the shadow dom.  
+
 # jQuery Quarantine
 
 Inject and Isolate a specific version of jQuery into the page and use it in a non-conflicting way.
