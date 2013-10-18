@@ -1,0 +1,11 @@
+{
+    "name": "jQuery-Quarantine",
+    "version": "0.0.1",
+    "devDependencies": {
+            "grunt": "~0.4.1",
+            "grunt-contrib-jasmine": "~0.5.1"
+    },
+    "scripts": {
+            "test": "grunt travis --verbose"
+    }
+}
